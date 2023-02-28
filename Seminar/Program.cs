@@ -28,8 +28,8 @@ void PrintMatrix(int[,] matr)
 }
 
 
-int n = 10;
-int m = 10;
+int n = 2;
+int m = 2;
 int[,] matrix = new int[n, m];
 int[,] matrix2 = new int[n, m];
 
@@ -41,17 +41,32 @@ FillMatrix(matrix2);
 Console.WriteLine();
 PrintMatrix(matrix2);
 
-int[,] matrix3 = new int[n, m];
-void Gemm(int M, int N, int K,) 
-for (int i = 0; i < n - 1; i++)
-{
-  for (int j = 0; j < m - 1; j++)
-  {
-    matrix3[i * m + j] = 0;
-    for (int k = 0; k < n - 1; k++)
-    {
 
-    }
+
+int[,] Multiplication(int[,] a, int[,] b)
+{
+  int[,] r = new int[a.GetLength(0), b.GetLength(1)];
+  if (a.GetLength(1) != b.GetLength(0))
+  {
+    Console.WriteLine("Матрицы нельзя перемножить");
   }
+  else
+  {
+    
+    for (int i = 0; i < a.GetLength(0); i++)
+    {
+      for (int j = 0; j < b.GetLength(1); j++)
+      {
+        for (int k = 0; k < b.GetLength(0); k++)
+        {
+          matrix[i, j] += a[i, k] * b[k, j];
+        }
+      }
+    }
+    
+  }
+  return r;
 }
 
+Console.WriteLine();
+PrintMatrix(Multiplication(matrix, matrix2));
